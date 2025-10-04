@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkSpeed = 4f;
     public float sprintSpeed = 7f;
+    public bool sprinting = false;
     public float jumpHeight = 2f;
     public float gravity = -20f;
     public bool isGrounded;
@@ -26,7 +27,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDir = Vector3.zero;
         moveDir.x = input.x;
         moveDir.z = input.y;
-        controller.Move(transform.TransformDirection(moveDir) * walkSpeed * Time.deltaTime);
+        if (sprinting)
+        {
+            controller.Move(transform.TransformDirection(moveDir) * sprintSpeed * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(transform.TransformDirection(moveDir) * walkSpeed * Time.deltaTime);
+        }
         playerVelocity.y += gravity * Time.deltaTime;
         if (isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2;
@@ -41,15 +49,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ToggleSprint(bool sprinting)
+    public void ToggleSprint(bool toggleOn)
     {
-        if (sprinting)
+        if (toggleOn)
         {
-
+            sprinting = true;
+            print("Start sprint");
         }
         else
         {
-
+            sprinting = false;
+            print("Stop sprint");
         }
     }
 }

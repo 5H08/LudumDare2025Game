@@ -8,6 +8,11 @@ public class PlayerCamera : MonoBehaviour
     public float xSensitivity = 30f;
     public float ySensitivity = 30f;
 
+    void Start()
+    {
+        cam = Camera.main;
+    }
+
     public void TurnPlayerCam(Vector2 input)
     {
         float mouseX = input.x;
