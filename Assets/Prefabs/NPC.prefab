@@ -105,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 3
   knockbackHeight: 1
-  knockbackDuration: 0.2
   stunTime: 2
   knockbackCooldown: 0.5
   playerTag: Player
@@ -130,7 +129,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -193,8 +192,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0

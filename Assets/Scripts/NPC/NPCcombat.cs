@@ -5,20 +5,20 @@ using System.Collections;
 public class NPCcombat : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Rigidbody rb;
 
     [Header("击退")]
     public float knockbackForce = 3f;      // 水平距离
     public float knockbackHeight = 1f;     // 高度
-    public float knockbackDuration = 0.2f; // 时间
     public float stunTime = 2f;            // 停行动时间
-    public float knockbackCooldown = 0.5f; 
+    public float knockbackCooldown = 0.5f;
 
     private bool isStunned = false;
     private bool canBeKnockedBack = true;
 
     // 追击开关
     public static bool canChase = false;
-    private bool triggeredChase = false; 
+    private bool triggeredChase = false;
 
     [Header("追击")]
     public string playerTag = "Player";
@@ -31,20 +31,16 @@ public class NPCcombat : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
 
-        // 找玩家
-        GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
+        // 让 Rigidbody 不受 NavMeshAgent 的 root motion 干扰
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     void Update()
     {
         if (player == null) return;
 
-      
         if (!canChase)
         {
             agent.ResetPath();
@@ -69,7 +65,7 @@ public class NPCcombat : MonoBehaviour
 
     public void ReceiveHit(Transform attacker)
     {
-       
+        // 第一次被打后开启追击
         if (!triggeredChase)
         {
             canChase = true;
@@ -78,35 +74,24 @@ public class NPCcombat : MonoBehaviour
 
         if (!canBeKnockedBack) return;
 
-       
+        // 计算击退方向
         Vector3 dir = (transform.position - attacker.position).normalized;
-        dir.y = 0.5f; // 向上
+        dir.y = 0.5f; // 向上击退
         dir.Normalize();
 
+        // 暂时关闭导航
         if (agent != null)
-            agent.isStopped = true;
+            agent.enabled = false;
 
-        StartCoroutine(KnockbackCoroutine(dir));
+        // 清除原速度，防止击退叠加
+        rb.linearVelocity = Vector3.zero;
+        // 给一个斜上方的力
+        rb.AddForce(dir * knockbackForce + Vector3.up * knockbackHeight, ForceMode.Impulse);
+
         StartCoroutine(KnockbackCooldownCoroutine());
 
         if (!isStunned)
             StartCoroutine(StunCoroutine());
-    }
-
-    private IEnumerator KnockbackCoroutine(Vector3 dir)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = startPos + dir * knockbackForce;
-        endPos.y = startPos.y + knockbackHeight; // 锁地面
-
-        float timer = 0f;
-        while (timer < knockbackDuration)
-        {
-            transform.position = Vector3.Lerp(startPos, endPos, timer / knockbackDuration);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = endPos;
     }
 
     private IEnumerator KnockbackCooldownCoroutine()
@@ -121,8 +106,9 @@ public class NPCcombat : MonoBehaviour
         isStunned = true;
         yield return new WaitForSeconds(stunTime);
 
+        // 恢复寻路
         if (agent != null)
-            agent.isStopped = false;
+            agent.enabled = true;
 
         isStunned = false;
     }
