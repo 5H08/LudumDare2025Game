@@ -6,7 +6,7 @@ public class NPCcombat : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Rigidbody rb;
-    public float knockbackForce = 5f;  // 击退距离
+    public float knockbackForce = 3f;  // 击退距离
     public float stunTime = 2f;        // 时间
     public float knockbackCooldown = 0.5f; 
 
@@ -21,26 +21,28 @@ public class NPCcombat : MonoBehaviour
 
     public void ReceiveHit(Transform player)
     {
-        Debug.Log("iii");
         if (!canBeKnockedBack) return;
 
+      
         Vector3 dir = (transform.position - player.position).normalized;
 
-    
+       
+        dir.y = 1f;  // 上击退
+        dir.Normalize(); // 保持方向向量
+
         if (agent != null)
             agent.isStopped = true;
 
- 
-        if (rb != null)
-            rb.AddForce(dir * knockbackForce, ForceMode.Impulse);
+      
+        Vector3 knockback = dir * knockbackForce;
+        transform.position += knockback;
 
-     
         StartCoroutine(KnockbackCooldownCoroutine());
 
-    
         if (!isStunned)
             StartCoroutine(StunCoroutine());
     }
+
 
     private IEnumerator KnockbackCooldownCoroutine()
     {
