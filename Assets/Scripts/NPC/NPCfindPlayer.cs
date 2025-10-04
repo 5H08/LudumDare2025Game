@@ -51,7 +51,7 @@ public class NPCfindPlayer : MonoBehaviour
         // 判断是否抓到玩家
         if (Vector3.Distance(transform.position, player.position) <= catchDistance)
         {
-            Debug.Log("udiedie");
+           // Debug.Log("udiedie");
             // TODO: 在这里加上失败页面逻辑
         }
     }

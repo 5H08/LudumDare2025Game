@@ -21,7 +21,7 @@ public class NPCcombat : MonoBehaviour
 
     public void ReceiveHit(Transform player)
     {
-       
+        Debug.Log("iii");
         if (!canBeKnockedBack) return;
 
         Vector3 dir = (transform.position - player.position).normalized;
