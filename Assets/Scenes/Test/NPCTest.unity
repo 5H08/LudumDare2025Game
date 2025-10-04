@@ -582,8 +582,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
+  knockbackHeight: 1
+  knockbackDuration: 0.2
   stunTime: 2
   knockbackCooldown: 0.5
+  playerTag: Player
+  catchDistance: 1.5
+  checkInterval: 0.1
 --- !u!1 &1481325289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,13 +1091,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 121286177725856689, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3552717069353181295, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
       propertyPath: m_Name
       value: bad
       objectReference: {fileID: 0}
     - target: {fileID: 4684833475709499886, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.54
+      value: -2.65
       objectReference: {fileID: 0}
     - target: {fileID: 4684833475709499886, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1100,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4684833475709499886, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.24
+      value: -12.64
       objectReference: {fileID: 0}
     - target: {fileID: 4684833475709499886, guid: 13da9730adf9ffb4dbd0340407c84c9b, type: 3}
       propertyPath: m_LocalRotation.w

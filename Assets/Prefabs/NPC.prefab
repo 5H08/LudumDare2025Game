@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4684833475709499886}
   - component: {fileID: 5791046683269577786}
   - component: {fileID: 7987493667586935191}
+  - component: {fileID: -5316567447629141813}
   - component: {fileID: 8188496064042114731}
   - component: {fileID: 121286177725856689}
   - component: {fileID: 4126463985667959780}
@@ -90,6 +91,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5316567447629141813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552717069353181295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee1a85c0a59f9d45a896ede906ff9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 3
+  knockbackHeight: 1
+  knockbackDuration: 0.2
+  stunTime: 2
+  knockbackCooldown: 0.5
+  playerTag: Player
+  catchDistance: 1.5
+  checkInterval: 0.1
 --- !u!136 &8188496064042114731
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -120,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3552717069353181295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3825b63cd99c3d24f8f0f7710f962117, type: 3}
   m_Name: 
