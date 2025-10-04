@@ -6,8 +6,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerVelocity;
 
     public float walkSpeed = 4f;
+
+    public float stamina = 1f;
     public float sprintSpeed = 7f;
     public bool sprinting = false;
+
     public float jumpHeight = 2f;
     public float gravity = -20f;
     public bool isGrounded;
