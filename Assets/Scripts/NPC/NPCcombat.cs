@@ -33,7 +33,7 @@ public class NPCcombat : MonoBehaviour
         if (agent != null)
             agent.isStopped = true;
 
-      
+
         Vector3 knockback = dir * knockbackForce;
         transform.position += knockback;
 
