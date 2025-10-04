@@ -18,7 +18,7 @@ public class NPCfindPlayer : MonoBehaviour
 
     void Start()
     {
-        canChase = true;//记得删
+        //canChase = true;//记得删
         agent = GetComponent<NavMeshAgent>();
 
         // 找玩家
