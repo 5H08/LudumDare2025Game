@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Coroutine punchRoutine = null;
-    private GameObject trigger;
+    [SerializeField] private GameObject trigger;
 
     void Start()
     {
@@ -18,6 +18,10 @@ public class PlayerCombat : MonoBehaviour
             StopCoroutine(punchRoutine);
             punchRoutine = StartCoroutine(PunchCoroutine());
         }
+        else
+        {
+            punchRoutine = StartCoroutine(PunchCoroutine());
+        }
     }
 
     public void RightPunch()
@@ -25,6 +29,10 @@ public class PlayerCombat : MonoBehaviour
         if (punchRoutine != null)
         {
             StopCoroutine(punchRoutine);
+            punchRoutine = StartCoroutine(PunchCoroutine());
+        }
+        else
+        {
             punchRoutine = StartCoroutine(PunchCoroutine());
         }
     }
