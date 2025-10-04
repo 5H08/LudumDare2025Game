@@ -34,6 +34,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Camera",
+                    "type": "Value",
+                    "id": "0a09cb5e-5bad-4c4e-8d41-5808be0aa588",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "LeftPunch",
                     "type": "Button",
                     "id": "5db533b6-a587-4b25-8c34-c990c12cd757",
@@ -149,6 +158,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2f93bb5-4cd2-4dc5-80e3-4da9231cc107",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

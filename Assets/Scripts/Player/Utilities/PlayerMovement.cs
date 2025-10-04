@@ -1,25 +1,24 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
-public class Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
 
     public float walkSpeed = 4f;
+    public float sprintSpeed = 7f;
     public float jumpHeight = 2f;
     public float gravity = -20f;
     public bool isGrounded;
 
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        isGrounded = controller.isGrounded;
     }
 
     public void MovePlayer(Vector2 input)
@@ -32,5 +31,25 @@ public class Movement : MonoBehaviour
         if (isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * gravity * -3);
+        }
+    }
+
+    public void ToggleSprint(bool sprinting)
+    {
+        if (sprinting)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }

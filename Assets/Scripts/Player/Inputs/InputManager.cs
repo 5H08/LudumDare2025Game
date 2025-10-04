@@ -2,13 +2,27 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private PlayerInputs input;
+    private PlayerInputs.InGameActions inGame;
+
+    private PlayerMovement movement;
+    private PlayerCamera cam;
+    private PlayerCombat combat;
+
     void Start()
     {
-        
+        // Initialize input system
+        input = new PlayerInputs();
+        inGame = input.InGame;
+        // Get all utility scripts
+        movement = GetComponent<PlayerMovement>();
+        cam = GetComponent<PlayerCamera>();
+        combat = GetComponent<PlayerCombat>();
+        // Lock Cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -22,17 +36,5 @@ public class InputManager : MonoBehaviour
     public void Jump()
     {
 
-    }
-
-    public void ToggleSprint(bool sprinting)
-    {
-        if (sprinting)
-        {
-
-        }
-        else
-        {
-
-        }
     }
 }
