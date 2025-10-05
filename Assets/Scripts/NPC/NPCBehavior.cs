@@ -66,6 +66,7 @@ public class NPCBehavior : MonoBehaviour
     // Called by trigger script when attacked
     public void ReceiveHit(Transform attacker)
     {
+        //这里写受击音效
         // Activates chase upon first hit
         if (!triggeredChase)
         {
