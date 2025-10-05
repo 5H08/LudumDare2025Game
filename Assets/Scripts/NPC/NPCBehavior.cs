@@ -1,40 +1,41 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-public class NPCcombat : MonoBehaviour
+
+public class NPCBehavior : MonoBehaviour
 {
-    private NavMeshAgent agent; // Unity å¯¼èˆªç³»ç»Ÿç»„ä»¶ï¼Œç”¨äºæ§åˆ¶ NPC è‡ªåŠ¨å¯»è·¯
+    private NavMeshAgent agent; // Unity µ¼º½ÏµÍ³×é¼ş£¬ÓÃÓÚ¿ØÖÆ NPC ×Ô¶¯Ñ°Â·
     private Rigidbody rb;
 
-    [Header("å‡»é€€")]
-    public float knockBackMagnitude = 50f;      // å‡»é€€æ—¶æ°´å¹³ç§»åŠ¨çš„è·ç¦»ï¼ˆè§†è§‰ä¸Šç›¸å½“äºâ€œè¢«æ‰“é£â€å¤šè¿œï¼‰
-    public float knockbackHeight = .75f;     // å‡»é€€æ—¶ä¸Šå‡çš„é«˜åº¦ï¼ˆå‘ä¸ŠæŠ›èµ·çš„å¹…åº¦ï¼‰
-    public float knockbackDuration = 1f; // å‡»é€€åŠ¨ç”»æŒç»­æ—¶é—´ï¼ˆLerp æ’å€¼è¿‡æ¸¡æ—¶é—´ï¼‰
-    public float stunTime = 2f;            // è¢«å‡»ä¸­åå¤±å»è¡ŒåŠ¨èƒ½åŠ›çš„æ—¶é—´
+    [Header("»÷ÍË")]
+    public float knockBackMagnitude = 50f;      // »÷ÍËÊ±Ë®Æ½ÒÆ¶¯µÄ¾àÀë£¨ÊÓ¾õÉÏÏàµ±ÓÚ¡°±»´ò·É¡±¶àÔ¶£©
+    public float knockbackHeight = .75f;     // »÷ÍËÊ±ÉÏÉıµÄ¸ß¶È£¨ÏòÉÏÅ×ÆğµÄ·ù¶È£©
+    public float knockbackDuration = 1f; // »÷ÍË¶¯»­³ÖĞøÊ±¼ä£¨Lerp ²åÖµ¹ı¶ÉÊ±¼ä£©
+    public float stunTime = 2f;            // ±»»÷ÖĞºóÊ§È¥ĞĞ¶¯ÄÜÁ¦µÄÊ±¼ä
     public float stillThreshold = .5f;
     private bool knockbackRunning = false;
     private Coroutine currentKnockbackCoroutine = null;
 
-    // === è¿½å‡»æ§åˆ¶ ===
+    // === ×·»÷¿ØÖÆ ===
     private bool triggeredChase = false;
-    public static bool canChase = false;   // æ˜¯å¦å…è®¸ NPC è¿½å‡»ç©å®¶ï¼ˆå…¨å±€é™æ€å˜é‡ï¼‰
+    public static bool canChase = false;   // ÊÇ·ñÔÊĞí NPC ×·»÷Íæ¼Ò£¨È«¾Ö¾²Ì¬±äÁ¿£©
     private Coroutine currentChaseCoroutine = null;
 
 
-    [Header("è¿½å‡»")]
-    private Transform player;              // ç©å®¶ä½ç½®å¼•ç”¨
-    public string playerTag = "Player";    // ç©å®¶ç‰©ä½“çš„ Tag åç§°
+    [Header("×·»÷")]
+    private Transform player;              // Íæ¼ÒÎ»ÖÃÒıÓÃ
+    public string playerTag = "Player";    // Íæ¼ÒÎïÌåµÄ Tag Ãû³Æ
 
-    public float checkInterval = 0.1f;     // å¤šä¹…åˆ·æ–°ä¸€æ¬¡å¯¼èˆªè·¯å¾„
+    public float checkInterval = 0.1f;     // ¶à¾ÃË¢ĞÂÒ»´Îµ¼º½Â·¾¶
 
     void Start()
     {
-        // è·å–ç»„ä»¶
+        // »ñÈ¡×é¼ş
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
-        // å¯»æ‰¾ç©å®¶å¯¹è±¡
+        // Ñ°ÕÒÍæ¼Ò¶ÔÏó
         GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
         if (playerObj != null)
         {
@@ -51,7 +52,7 @@ public class NPCcombat : MonoBehaviour
 
     }
 
-    // å¯»è·¯æºç¨‹
+    // Ñ°Â·Ğ¯³Ì
     private IEnumerator NavCycle()
     {
         yield return null;
@@ -85,8 +86,8 @@ public class NPCcombat : MonoBehaviour
         dir.y += knockbackHeight;
         dir.Normalize();
 
-        // å¯åŠ¨å‡»é€€åç¨‹ï¼ˆæ§åˆ¶å‡»é€€åŠ¨ç”»ï¼‰
-        if (knockbackRunning) 
+        // Æô¶¯»÷ÍËĞ­³Ì£¨¿ØÖÆ»÷ÍË¶¯»­£©
+        if (knockbackRunning)
         {
             StopCoroutine(currentKnockbackCoroutine);
             currentKnockbackCoroutine = StartCoroutine(ChainedKnockback(dir));
