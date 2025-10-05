@@ -75,6 +75,7 @@ public class NPCBehavior : MonoBehaviour
             if (itemComp != null)
             {
                 itemComp.SpawnItem(transform.position);
+                FindObjectOfType<BGMManager>().OnFirstAttackTriggered();
             }
         }
         else
