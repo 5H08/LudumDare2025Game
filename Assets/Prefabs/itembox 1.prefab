@@ -109,7 +109,7 @@ MonoBehaviour:
   spawnBurstForce: 0
   upwardForce: 0
   groundOffset: 0
-  attractDelay: 0.5
+  attractDelay: 0.2
 --- !u!65 &145011253059661837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   arcHeight: 1.5
   fallDuration: 1
   explosionRadius: 1
-  explosionUpward: 1
+  explosionUpward: 0.5
 --- !u!54 &7484232801443216879
 Rigidbody:
   m_ObjectHideFlags: 0
