@@ -70,6 +70,11 @@ public class NPCBehavior : MonoBehaviour
         if (!triggeredChase)
         {
             triggeredChase = true;
+            NPCitem itemComp = GetComponent<NPCitem>();
+            if (itemComp != null)
+            {
+                itemComp.SpawnItem(transform.position);
+            }
         }
         else
         {
