@@ -32,7 +32,7 @@ public class NPCfindPlayer : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
+        
         // 如果开关没打开，就直接不追
         if (!canChase)
         {
