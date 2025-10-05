@@ -14,7 +14,7 @@ public class PunchTrigger : MonoBehaviour
         if (other.gameObject.tag == "NPC")
         {
             print("Punched!");
-            NPCcombat combatScript = other.GetComponent<NPCcombat>();
+            NPCBehavior combatScript = other.GetComponent<NPCBehavior>();
             if (combatScript != null)
             {
                 combatScript.ReceiveHit(player);
