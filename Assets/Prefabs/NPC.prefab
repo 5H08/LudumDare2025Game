@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8188496064042114731}
   - component: {fileID: 4126463985667959780}
   - component: {fileID: 4401739311413374251}
+  - component: {fileID: 6480580395359406407}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -181,3 +182,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &6480580395359406407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552717069353181295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f86826e91c4b6547967a5a2e8cef4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 0}
+  spawnOffset: {x: 0, y: 1, z: 0}
+  randomRadius: 0.5
