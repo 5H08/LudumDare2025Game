@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 4684833475709499886}
   - component: {fileID: 5791046683269577786}
   - component: {fileID: 7987493667586935191}
-  - component: {fileID: -5316567447629141813}
+  - component: {fileID: 924251086691813292}
   - component: {fileID: 8188496064042114731}
-  - component: {fileID: 121286177725856689}
   - component: {fileID: 4126463985667959780}
   - component: {fileID: 4401739311413374251}
   m_Layer: 0
@@ -91,7 +90,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-5316567447629141813
+--- !u!114 &924251086691813292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,15 +99,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3552717069353181295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee1a85c0a59f9d45a896ede906ff9a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5db74823ba6ccbf4f8abe4357b323600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 3
-  knockbackHeight: 1
+  knockBackMagnitude: 50
+  knockbackHeight: 0.75
+  knockbackDuration: 1
   stunTime: 2
-  knockbackCooldown: 0.5
+  stillThreshold: 0.5
   playerTag: Player
-  catchDistance: 1.5
   checkInterval: 0.1
 --- !u!136 &8188496064042114731
 CapsuleCollider:
@@ -133,21 +132,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &121286177725856689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3552717069353181295}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3825b63cd99c3d24f8f0f7710f962117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: Player
-  catchDistance: 1.5
-  checkInterval: 0.1
 --- !u!195 &4126463985667959780
 NavMeshAgent:
   m_ObjectHideFlags: 0
