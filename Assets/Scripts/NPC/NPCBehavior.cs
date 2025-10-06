@@ -7,6 +7,7 @@ public class NPCBehavior : MonoBehaviour
 {
     private NavMeshAgent agent; // Unity 导航系统组件，用于控制 NPC 自动寻路
     private Rigidbody rb;
+    private Animator animator;
 
     [Header("击退")]
     public float knockBackMagnitude = 50f;      // 击退时水平移动的距离（视觉上相当于“被打飞”多远）
@@ -34,6 +35,7 @@ public class NPCBehavior : MonoBehaviour
         // 获取组件
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
 
         // 寻找玩家对象
         GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
@@ -71,11 +73,13 @@ public class NPCBehavior : MonoBehaviour
         if (!triggeredChase)
         {
             triggeredChase = true;
+            animator.SetBool("StartedRunning", true);
+
             NPCitem itemComp = GetComponent<NPCitem>();
             if (itemComp != null)
             {
                 itemComp.SpawnItem(transform.position);
-                FindAnyObjectByType<BGMManager>().OnFirstAttackTriggered();
+                //FindAnyObjectByType<BGMManager>().OnFirstAttackTriggered();
             }
         }
         else
@@ -107,6 +111,7 @@ public class NPCBehavior : MonoBehaviour
 
     private IEnumerator ApplyKnockback(Vector3 force)
     {
+        animator.SetBool("Hit", true);
         // Enable rb and disable agent
         knockbackRunning = true;
         yield return null;
@@ -125,6 +130,7 @@ public class NPCBehavior : MonoBehaviour
                                    );
         yield return new WaitForSeconds(stunTime);
 
+        animator.SetBool("Hit", false);
         knockbackRunning = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -138,6 +144,7 @@ public class NPCBehavior : MonoBehaviour
 
     private IEnumerator ChainedKnockback(Vector3 force)
     {
+        animator.SetBool("Hit", true);
         rb.AddForce(force * knockBackMagnitude, ForceMode.Impulse);
         yield return new WaitForFixedUpdate();
         float knockbackTime = Time.time;
@@ -147,6 +154,7 @@ public class NPCBehavior : MonoBehaviour
                                    );
         yield return new WaitForSeconds(stunTime);
 
+        animator.SetBool("Hit", false);
         knockbackRunning = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

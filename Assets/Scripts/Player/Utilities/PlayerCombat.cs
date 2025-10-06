@@ -40,7 +40,7 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator PunchCoroutine()
     {
         trigger.SetActive(false);
-        yield return null;
+        yield return new WaitForFixedUpdate();
         trigger.SetActive(true);
         yield return new WaitForSeconds(.5f);
         trigger.SetActive(false);
