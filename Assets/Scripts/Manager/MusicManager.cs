@@ -2,24 +2,33 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    AudioSource musicSource;
+    AudioClip attackMusic;
+    AudioClip endMusic;
     bool attackStarted = false;
+
+    void Start()
+    {
+        musicSource = GetComponent<AudioSource>();
+    }
 
     public void StartAttack()
     {
-        if (!attackStarted)
-        {
-
-        }
+        //if (!attackStarted)
+        //{
+        //    print("countdown");
+        //    attackStarted = true;
+        //    musicSource.Stop();
+        //    musicSource.clip = attackMusic;
+        //    musicSource.Play();
+        //}
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void StartEndMusic()
     {
-        
+        //print("countdown");
+        //musicSource.Stop();
+        //musicSource.clip = endMusic;
+        //musicSource.Play();
     }
 }

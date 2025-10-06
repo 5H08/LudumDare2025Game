@@ -200,9 +200,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee4245af62cbd34ea3819daa158d80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAudio: []
+  firstHitAudio:
+  - {fileID: 8300000, guid: f74db093c97f1f14884221f38b7b8e3d, type: 3}
+  - {fileID: 8300000, guid: 233950f4ad813db43994544228a2566b, type: 3}
+  - {fileID: 8300000, guid: d2cc121c880be1a4189e4e0804de73f6, type: 3}
+  hitAudio:
+  - {fileID: 8300000, guid: 503e9d881d7f068438a7cc17ac62cd6a, type: 3}
+  - {fileID: 8300000, guid: 417f4572287bd5b4a8689dbb604d1af5, type: 3}
+  - {fileID: 8300000, guid: 89b5f9965795a644cb3bf74dacd244f2, type: 3}
   randomAudio: []
-  aggroAudio: []
+  aggroAudio:
+  - {fileID: 8300000, guid: a037edc91a88f8a408437b9bdae2df81, type: 3}
+  - {fileID: 8300000, guid: 7e4688c494e3f144ca81b3e0b7e03670, type: 3}
+  - {fileID: 8300000, guid: 43a70c624c2aa574abe0f5a52eb96e16, type: 3}
 --- !u!82 &8689019229297553292
 AudioSource:
   m_ObjectHideFlags: 0

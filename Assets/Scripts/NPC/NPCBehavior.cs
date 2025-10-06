@@ -100,12 +100,14 @@ public class NPCBehavior : MonoBehaviour
             manager.AdjustScore(firstHitScore);
             triggeredChase = true;
             animator.SetBool("StartedRunning", true);
+            sound.PlayAudio("first");
+            StartCoroutine(AggroVoiceLoop());
 
             NPCitem itemComp = GetComponent<NPCitem>();
             if (itemComp != null)
             {
                 itemComp.SpawnItem(transform.position);
-                //music.StartAttack();
+                music.StartAttack();
             }
             else
             {
@@ -115,6 +117,10 @@ public class NPCBehavior : MonoBehaviour
         }
         else
         {
+            if (triggeredChase)
+            {
+                sound.PlayAudio("hit");
+            }
             agent.speed += speedIncrement;
             if (currentChaseCoroutine != null && agent.enabled == true)
             {
@@ -122,6 +128,7 @@ public class NPCBehavior : MonoBehaviour
                 agent.ResetPath();
             }
         }
+
 
         // Calculate force
         Vector3 dir = (transform.position - attacker.position);
@@ -139,6 +146,13 @@ public class NPCBehavior : MonoBehaviour
         {
             currentKnockbackCoroutine = StartCoroutine(ApplyKnockback(dir));
         }
+    }
+
+    IEnumerator AggroVoiceLoop()
+    {
+        yield return new WaitForSeconds(Random.Range(5f, 15f));
+        sound.PlayAudio("aggro");
+        StartCoroutine(AggroVoiceLoop());
     }
 
     private IEnumerator ApplyKnockback(Vector3 force)

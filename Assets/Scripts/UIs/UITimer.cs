@@ -6,6 +6,7 @@ public class UITimer : MonoBehaviour
     private TMP_Text timer;
     private MainManager mainManager;
 
+    bool calledEnd = false;
     public int maxTime = 180;
     private float timeLeft;
 
@@ -23,6 +24,13 @@ public class UITimer : MonoBehaviour
             timer.text = "0:0.00";
             mainManager.EndRun("time");
         }
+
+        if (timeLeft <= 60 && calledEnd)
+        {
+            calledEnd = true;
+            mainManager.SixtySeconds();
+        }
+
         else
         {
             int minutes = (int)(timeLeft / 60);

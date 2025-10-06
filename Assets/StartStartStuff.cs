@@ -11,6 +11,7 @@ public class StartStartStuff : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 1;
     }
 
     private void Update()

@@ -81,7 +81,8 @@ public class PlayerCombat : MonoBehaviour
         }
         if (health <= 0)
         {
-            // End Sequence
+            MainManager manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
+            manager.EndRun("dead");
         }
     }
 

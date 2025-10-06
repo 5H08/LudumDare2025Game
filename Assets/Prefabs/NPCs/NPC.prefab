@@ -180,6 +180,10 @@ MonoBehaviour:
   knockbackDuration: 1
   stunTime: 2
   stillThreshold: 0.5
+  firstHitScore: 20
+  hitScore: 5
+  baseSpeed: 3.5
+  speedIncrement: 0.5
   playerTag: Player
   checkInterval: 0.1
   itemIcon: {fileID: 0}
@@ -210,9 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee4245af62cbd34ea3819daa158d80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAudio: []
+  firstHitAudio: []
+  hitAudio:
+  - {fileID: 8300000, guid: 503e9d881d7f068438a7cc17ac62cd6a, type: 3}
+  - {fileID: 8300000, guid: 417f4572287bd5b4a8689dbb604d1af5, type: 3}
+  - {fileID: 8300000, guid: 89b5f9965795a644cb3bf74dacd244f2, type: 3}
   randomAudio: []
-  aggroAudio: []
+  aggroAudio:
+  - {fileID: 8300000, guid: a037edc91a88f8a408437b9bdae2df81, type: 3}
+  - {fileID: 8300000, guid: 7e4688c494e3f144ca81b3e0b7e03670, type: 3}
+  - {fileID: 8300000, guid: 43a70c624c2aa574abe0f5a52eb96e16, type: 3}
 --- !u!82 &1815318008133312495
 AudioSource:
   m_ObjectHideFlags: 0

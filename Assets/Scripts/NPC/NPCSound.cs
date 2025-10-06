@@ -4,6 +4,7 @@ public class NPCSound : MonoBehaviour
 {
     private AudioSource source;
 
+    public AudioClip[] firstHitAudio;
     public AudioClip[] hitAudio;
     public AudioClip[] randomAudio;
     public AudioClip[] aggroAudio;
@@ -17,19 +18,20 @@ public class NPCSound : MonoBehaviour
     {
         switch (type)
         {
+            case "first":
+                source.PlayOneShot(firstHitAudio[Random.Range(0, firstHitAudio.Length)]);
+                break;
+
             case "hit":
-                source.clip = hitAudio[Random.Range(0, hitAudio.Length)];
-                source.Play();
+                source.PlayOneShot(hitAudio[Random.Range(0, hitAudio.Length)]);
                 break;
 
             case "random":
-                source.clip = randomAudio[Random.Range(0, randomAudio.Length)];
-                source.Play();
+                source.PlayOneShot(randomAudio[Random.Range(0, randomAudio.Length)]);
                 break;
 
             case "aggro":
-                source.clip = aggroAudio[Random.Range(0, aggroAudio.Length)];
-                source.Play();
+                source.PlayOneShot(aggroAudio[Random.Range(0, aggroAudio.Length)]);
                 break;
         }
     }
