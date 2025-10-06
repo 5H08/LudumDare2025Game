@@ -11,7 +11,7 @@ public class BGMManager : MonoBehaviour
 
     private bool hasSwitchedToBGM2 = false; // ✅ 确保只切一次
     private bool hasSwitchedToBGM3 = false;
-    private float totalTime = 300f;        
+    private float totalTime = 150f;        
     private float timer;
 
     void Start()
