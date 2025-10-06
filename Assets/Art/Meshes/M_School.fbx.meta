@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Concrete
+    second: {fileID: 2100000, guid: d5b89cccbfd3a0e46afa7bd3bc2e2c73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_SchoolBuilding
     second: {fileID: 2100000, guid: 30e53937ffe38ce4ab909ceaf1019841, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface1
+    second: {fileID: 2100000, guid: d5b89cccbfd3a0e46afa7bd3bc2e2c73, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
