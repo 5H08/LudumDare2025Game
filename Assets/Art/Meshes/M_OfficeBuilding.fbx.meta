@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Concrete
+    second: {fileID: 2100000, guid: b5b36ee0fdd0e8a468adb7e19a28545b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MetalRim
+    second: {fileID: 2100000, guid: 17460ad42ce74f6439826e2cd7e027ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_OfficeBuilding
     second: {fileID: 2100000, guid: bec5bc19b14057748a7f54b359a68886, type: 2}
   materials:

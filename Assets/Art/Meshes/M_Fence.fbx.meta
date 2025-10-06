@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Metal
+    second: {fileID: 2100000, guid: 99da63e4a789d5f4bab481b95fc9a053, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Wire
     second: {fileID: 2100000, guid: b99aa6965b55eb549b50a049fcb26625, type: 2}
   materials:

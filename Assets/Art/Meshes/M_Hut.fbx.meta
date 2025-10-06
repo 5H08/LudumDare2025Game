@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_WarehouseRoof
     second: {fileID: 2100000, guid: 3561ad3d5293c7948871c63bca0d2fc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Wood
+    second: {fileID: 2100000, guid: df2249904d9f4ae4f8d611aab16e1766, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
