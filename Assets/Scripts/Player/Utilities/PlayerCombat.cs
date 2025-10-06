@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public int health = 100;
     private bool invincible = false;
     private Slider healthBar;
+    private Animator damageAnim;
 
     [SerializeField] private GameObject trigger;
     [SerializeField] private Animator leftAnim;

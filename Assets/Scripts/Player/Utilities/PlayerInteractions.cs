@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerInteractions : MonoBehaviour
 {
     private GameObject menu;
-    public Dictionary<string, Sprite> items = new Dictionary<string, Sprite>();
 
     void Start()
     {
@@ -26,5 +26,15 @@ public class PlayerInteractions : MonoBehaviour
     public void CloseMenu()
     {
         menu.SetActive(false);
+    }
+
+    public void ReturnMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

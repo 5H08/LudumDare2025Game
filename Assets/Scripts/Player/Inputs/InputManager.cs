@@ -41,6 +41,8 @@ public class InputManager : MonoBehaviour
         inGame.OpenMenu.performed += ctx => interactions.OpenMenu();
         // Menu
         inMenu.CloseMenu.performed += ctx => interactions.CloseMenu();
+        inMenu.ReturnMenu.performed += ctx => interactions.ReturnMenu();
+        inMenu.ExitGame.performed += ctx => interactions.ExitGame();
     }
 
     void Update()

@@ -9,6 +9,11 @@ public class NPCBehavior : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
 
+    private NPCSound sound;
+    private NPCDamage damage;
+    private MainManager manager;
+    private MusicManager music;
+
     [Header("击退")]
     public float knockBackMagnitude = 50f;      // 击退时水平移动的距离（视觉上相当于“被打飞”多远）
     public float knockbackHeight = .75f;     // 击退时上升的高度（向上抛起的幅度）
@@ -16,6 +21,8 @@ public class NPCBehavior : MonoBehaviour
     public float stunTime = 2f;            // 被击中后失去行动能力的时间
     public float stillThreshold = .5f;
     private bool knockbackRunning = false;
+    public int firstHitScore = 20;
+    public int hitScore = 5;
     private Coroutine currentKnockbackCoroutine = null;
 
     // === 追击控制 ===
@@ -23,6 +30,9 @@ public class NPCBehavior : MonoBehaviour
     public static bool canChase = false;   // 是否允许 NPC 追击玩家（全局静态变量）
     private Coroutine currentChaseCoroutine = null;
 
+    [Header("Buffing")]
+    public float baseSpeed = 3.5f;
+    public float speedIncrement = .5f;
 
     [Header("追击")]
     private Transform player;              // 玩家位置引用
@@ -30,12 +40,23 @@ public class NPCBehavior : MonoBehaviour
 
     public float checkInterval = 0.1f;     // 多久刷新一次导航路径
 
+    [Header("Item")]
+    public Material itemIcon;
+    public int itemScore;
+    public string itemName;
+
     void Start()
     {
         // 获取组件
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         animator = transform.GetChild(0).GetComponent<Animator>();
+        damage = transform.GetChild(1).GetComponent<NPCDamage>();
+        sound = GetComponent<NPCSound>();
+        music = GameObject.FindGameObjectWithTag("Manager").GetComponent<MusicManager>();
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
+
+        agent.speed = baseSpeed;
 
         // 寻找玩家对象
         GameObject playerObj = GameObject.FindGameObjectWithTag(playerTag);
@@ -70,8 +91,13 @@ public class NPCBehavior : MonoBehaviour
     {
         //这里写受击音效
         // Activates chase upon first hit
+        manager.AdjustScore(hitScore);
+
+        damage.canDamage = false;
+        
         if (!triggeredChase)
         {
+            manager.AdjustScore(firstHitScore);
             triggeredChase = true;
             animator.SetBool("StartedRunning", true);
 
@@ -79,11 +105,17 @@ public class NPCBehavior : MonoBehaviour
             if (itemComp != null)
             {
                 itemComp.SpawnItem(transform.position);
-                //FindAnyObjectByType<BGMManager>().OnFirstAttackTriggered();
+                //music.StartAttack();
+            }
+            else
+            {
+                print("Passive NPC!");
+                music.StartAttack();
             }
         }
         else
         {
+            agent.speed += speedIncrement;
             if (currentChaseCoroutine != null && agent.enabled == true)
             {
                 StopCoroutine(currentChaseCoroutine);
@@ -131,6 +163,7 @@ public class NPCBehavior : MonoBehaviour
         yield return new WaitForSeconds(stunTime);
 
         animator.SetBool("Hit", false);
+        damage.canDamage = true;
         knockbackRunning = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -155,6 +188,7 @@ public class NPCBehavior : MonoBehaviour
         yield return new WaitForSeconds(stunTime);
 
         animator.SetBool("Hit", false);
+        damage.canDamage = true;
         knockbackRunning = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

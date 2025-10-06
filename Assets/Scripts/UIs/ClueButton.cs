@@ -1,10 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClueButton : MonoBehaviour
 {
     private GameObject listHide;
     private GameObject sellPage;
+
+    private MainManager manager;
 
     public string sellTitle;
     private TMP_Text title;
@@ -25,6 +28,20 @@ public class ClueButton : MonoBehaviour
         title.text = sellTitle;
         price.text = sellPrice;
         desc.text = sellDescription;
+
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
+    }
+
+    private void OnEnable()
+    {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
+        foreach (string item in manager.items)
+        {
+            if (CheckObtained(item))
+            {
+                break;
+            }
+        }
     }
 
     public void OpenDesc()
@@ -37,13 +54,16 @@ public class ClueButton : MonoBehaviour
         page.GetChild(2).GetComponent<TMP_Text>().text = sellPrice;
     }
 
-    public void CheckObtained(string name)
+    public bool CheckObtained(string name)
     {
         if (name == itemName)
         {
-            title.text = "[Sold Out]";
-            price.text = "$----";
-            desc.text = "Unavailable";
+            GetComponent<Button>().interactable = false;
+            title.text = "[Sold Out]" + sellTitle;
+            price.text = "$------";
+            desc.text = "[Unavailable]" + sellDescription;
+            return true;
         }
+        return false;
     }
 }

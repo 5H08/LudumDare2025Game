@@ -1,17 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class NPCDamage : MonoBehaviour
 {
     public int damage;
+    public bool canDamage = false;
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerCombat combatScript = other.gameObject.GetComponent<PlayerCombat>();
-            if (combatScript != null )
+            if (canDamage)
             {
-                combatScript.ReduceHealth(damage);
+                PlayerCombat combatScript = other.gameObject.GetComponent<PlayerCombat>();
+                if (combatScript != null)
+                {
+                    combatScript.ReduceHealth(damage);
+                }
+            }
+            else
+            {
+
             }
         }
     }
