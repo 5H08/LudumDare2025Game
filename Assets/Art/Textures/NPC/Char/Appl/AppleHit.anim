@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BagRun
+  m_Name: AppleHit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2100000, guid: 67e7b45f0b59584449e2a78bccdec8a4, type: 2}
-    - time: 0.16666667
-      value: {fileID: 2100000, guid: 6f7639f50b42a7b45918f2db6e9ff16f, type: 2}
-    - time: 0.33333334
-      value: {fileID: 2100000, guid: 67e7b45f0b59584449e2a78bccdec8a4, type: 2}
+      value: {fileID: 2100000, guid: 48bf84296f62b234699bbe998f7a486f, type: 2}
+    - time: 0.083333336
+      value: {fileID: 2100000, guid: 48bf84296f62b234699bbe998f7a486f, type: 2}
     attribute: 'm_Materials.Array.data[0]'
     path: 
     classID: 23
@@ -48,15 +46,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2100000, guid: 67e7b45f0b59584449e2a78bccdec8a4, type: 2}
-    - {fileID: 2100000, guid: 6f7639f50b42a7b45918f2db6e9ff16f, type: 2}
-    - {fileID: 2100000, guid: 67e7b45f0b59584449e2a78bccdec8a4, type: 2}
+    - {fileID: 2100000, guid: 48bf84296f62b234699bbe998f7a486f, type: 2}
+    - {fileID: 2100000, guid: 48bf84296f62b234699bbe998f7a486f, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
