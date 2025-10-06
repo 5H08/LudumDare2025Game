@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7059575076136673128}
   - component: {fileID: 6670785110542416541}
   - component: {fileID: 5959682601867621985}
+  - component: {fileID: 1471443440036771071}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -56,7 +57,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6786616407124092146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -154,6 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e37f3e61dee584e88468fe2d5d6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  cam: {fileID: 0}
+  combat: {fileID: 0}
+  interactions: {fileID: 0}
 --- !u!114 &7059575076136673128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e4897bbf3af374393fa214172a471c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   trigger: {fileID: 0}
+  leftAnim: {fileID: 0}
+  rightAnim: {fileID: 0}
 --- !u!114 &5959682601867621985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,12 +203,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 6
+  maxStamina: 5
   stamina: 1
+  recoverCooldown: 3
+  recoverScale: 1.2
   sprintSpeed: 10
   sprinting: 0
   jumpHeight: 2
   gravity: -20
   isGrounded: 0
+--- !u!114 &1471443440036771071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786616407124092146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c7b3236137957408bf5c9a8007c313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7695926429962201006
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6955569736209080722
 Transform:
   m_ObjectHideFlags: 0
@@ -228,8 +251,8 @@ Transform:
   m_GameObject: {fileID: 7695926429962201006}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.436, z: 0.841}
-  m_LocalScale: {x: 1.3628, y: 0.46157, z: 1.264}
+  m_LocalPosition: {x: 0, y: 0.436, z: 1.31}
+  m_LocalScale: {x: 2.2733562, y: 0.7699684, z: 2.108543}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4103886132712877352}

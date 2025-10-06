@@ -4,11 +4,13 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private PlayerInputs input;
-    private PlayerInputs.InGameActions inGame;
+    public PlayerInputs.InGameActions inGame;
+    public PlayerInputs.InMenuActions inMenu;
 
-    private PlayerMovement movement;
-    private PlayerCamera cam;
-    private PlayerCombat combat;
+    [SerializeField] private PlayerMovement movement;
+    [SerializeField] private PlayerCamera cam;
+    [SerializeField] private PlayerCombat combat;
+    [SerializeField] private PlayerInteractions interactions;
 
     void Awake()
     {
@@ -16,25 +18,29 @@ public class InputManager : MonoBehaviour
         input = new PlayerInputs();
         inGame = input.InGame;
         inGame.Enable();
+        inMenu = input.InMenu;
+        inMenu.Disable();
         // Lock Cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void Start()
+    {
+        // Get all utility scripts
+        movement = GetComponent<PlayerMovement>();
+        cam = GetComponent<PlayerCamera>();
+        combat = GetComponent<PlayerCombat>();
+        interactions = GetComponent<PlayerInteractions>();
         // Bind action methods to input
         inGame.Jump.performed += ctx => movement.Jump();
         inGame.Sprint.performed += ctx => movement.ToggleSprint(true);
         inGame.Sprint.canceled += ctx => movement.ToggleSprint(false);
         inGame.LeftPunch.performed += ctx => combat.LeftPunch();
         inGame.RightPunch.performed += ctx => combat.RightPunch();
-    }
-
-    void Start()
-    {
-
-        // Get all utility scripts
-        movement = GetComponent<PlayerMovement>();
-        cam = GetComponent<PlayerCamera>();
-        combat = GetComponent<PlayerCombat>();
-
+        inGame.OpenMenu.performed += ctx => interactions.OpenMenu();
+        // Menu
+        inMenu.CloseMenu.performed += ctx => interactions.CloseMenu();
     }
 
     void Update()

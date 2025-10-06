@@ -1,24 +1,30 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteractions : MonoBehaviour
 {
-    public List items = new List();
+    private GameObject menu;
+    public Dictionary<string, Sprite> items = new Dictionary<string, Sprite>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        menu = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(4).gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ItemPickup(string name, Sprite icon)
     {
-        
+
     }
 
-    public void ItemPickup()
+    public void OpenMenu()
     {
+        menu.SetActive(true);
+    }
 
+    public void CloseMenu()
+    {
+        menu.SetActive(false);
     }
 }

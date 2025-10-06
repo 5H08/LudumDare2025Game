@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public int health = 100;
+    private bool invincible = false;
+    private Slider healthBar;
+
     [SerializeField] private GameObject trigger;
     [SerializeField] private Animator leftAnim;
     [SerializeField] private Animator rightAnim;
@@ -17,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
         GameObject canv = GameObject.FindGameObjectWithTag("UI Canvas");
         leftAnim = canv.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         rightAnim = canv.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
+        healthBar = canv.transform.GetChild(2).GetChild(0).GetComponent<Slider>();
     }
 
     public void LeftPunch()
@@ -62,6 +68,27 @@ public class PlayerCombat : MonoBehaviour
 
         }
         
+    }
+
+    public void ReduceHealth(int dmg)
+    {
+        if (!invincible)
+        {
+            health -= dmg;
+            healthBar.value = health;
+            StartCoroutine(Invincibility());
+        }
+        if (health <= 0)
+        {
+            // End Sequence
+        }
+    }
+
+    IEnumerator Invincibility()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(1);
+        invincible = false;
     }
 
     IEnumerator LeftCooldown()
