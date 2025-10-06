@@ -14,6 +14,7 @@ public class UITimer : MonoBehaviour
     {
         timeLeft = maxTime;
         timer = GetComponent<TMP_Text>();
+        mainManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
     }
 
     private void Update()

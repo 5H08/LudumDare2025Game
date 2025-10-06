@@ -10,7 +10,7 @@ public class PlayerInteractions : MonoBehaviour
 
     void Start()
     {
-        menu = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(4).gameObject;
+        menu = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(7).gameObject;
     }
 
     public void ItemPickup(string name, Sprite icon)

@@ -35,6 +35,9 @@ public class ClueButton : MonoBehaviour
     private void OnEnable()
     {
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<MainManager>();
+        title = transform.GetChild(0).GetComponent<TMP_Text>();
+        price = transform.GetChild(1).GetComponent<TMP_Text>();
+        desc = transform.GetChild(2).GetComponent<TMP_Text>();
         foreach (string item in manager.items)
         {
             if (CheckObtained(item))

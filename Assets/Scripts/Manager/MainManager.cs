@@ -18,9 +18,9 @@ public class MainManager : MonoBehaviour
     {
         score = 0;
         input = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
-        scoreDisplay = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(5).
+        scoreDisplay = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(4).
                        GetComponent<TMP_Text>();
-        warning = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(7).gameObject;
+        warning = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(6).gameObject;
         music = GetComponent<MusicManager>();
         endScreen = warning = GameObject.FindGameObjectWithTag("UI Canvas").transform.GetChild(8).gameObject;
     }
@@ -55,7 +55,7 @@ public class MainManager : MonoBehaviour
                 Cursor.visible = true;
                 endScreen.SetActive(true);
                 TMP_Text endText2 = endScreen.transform.GetChild(0).GetComponent<TMP_Text>();
-                endText2.text = score + "GAME ENDED\r\n\r\nYOUR COLLECTOR SCORE IS:\r\n\r\n" + score + "\n\nYOU DIED.\n\n[Q] MENU    [X] EXIT";
+                endText2.text = "GAME ENDED\r\n\r\nYOUR COLLECTOR SCORE IS:\r\n\r\n" + score + "\n\nYOU DIED.\n\n[Q] MENU    [X] EXIT";
                 break;
 
             default:
